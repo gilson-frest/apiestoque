@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "tSwNqpB1xa3SZqSz6pzwwAtTdkMs85RSyP3ZcTGdMCc=",
+  "Source": "ApiEstoque.Services",
+  "BasePath": "_content/ApiEstoque.Services",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

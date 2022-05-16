@@ -1,0 +1,44 @@
+﻿IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+CREATE TABLE [ESTOQUE] (
+    [IDESTOQUE] uniqueidentifier NOT NULL,
+    [NOME] nvarchar(250) NOT NULL,
+    [DESCRICAO] nvarchar(500) NOT NULL,
+    [DATACRIACAO] datetime2 NOT NULL,
+    CONSTRAINT [PK_ESTOQUE] PRIMARY KEY ([IDESTOQUE])
+);
+GO
+
+CREATE TABLE [PRODUTO] (
+    [IDPRODUTO] uniqueidentifier NOT NULL,
+    [NOME] nvarchar(150) NOT NULL,
+    [PRECO] decimal(18,2) NOT NULL,
+    [QUANTIDADE] int NOT NULL,
+    [DATACRIACAO] datetime2 NOT NULL,
+    [IDESTOQUE] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_PRODUTO] PRIMARY KEY ([IDPRODUTO]),
+    CONSTRAINT [FK_PRODUTO_ESTOQUE_IDESTOQUE] FOREIGN KEY ([IDESTOQUE]) REFERENCES [ESTOQUE] ([IDESTOQUE]) ON DELETE CASCADE
+);
+GO
+
+CREATE INDEX [IX_PRODUTO_IDESTOQUE] ON [PRODUTO] ([IDESTOQUE]);
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20220502154832_Initial', N'6.0.4');
+GO
+
+COMMIT;
+GO
+
